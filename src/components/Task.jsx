@@ -1,6 +1,6 @@
 import ShowTaskList from "./ShowTaskList";
 
-function TaskList(props) {
+function Task(props) {
   const { List } = props;
 
   return (
@@ -8,6 +8,7 @@ function TaskList(props) {
       {List.map((data) => {
         return (
           <ShowTaskList
+          key = {data.id}
             name={data.name}
             date={data.date}
             status={
@@ -17,6 +18,7 @@ function TaskList(props) {
                 <strong>No Realizado</strong>
               )
             }
+            hour = {data.hour}
           />
         );
       })}
@@ -24,4 +26,4 @@ function TaskList(props) {
   );
 }
 
-export default TaskList;
+export default Task;

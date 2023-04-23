@@ -1,10 +1,11 @@
 function ShowTaskList(props) {
-  const { name, date, status } = props;
+  const { name, date, status, hour } = props;
   return (
     <div className="CardTaskList">
       <p>name:{name}</p>
-      <p>name: {date}</p>
+      <p>date:{date}</p>
       <p>status:{status}</p>
+      <p>hour:{hour}</p>
     </div>
   );
 }
