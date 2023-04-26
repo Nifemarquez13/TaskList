@@ -3,11 +3,15 @@ import { Tasklist } from "./Tasklist";
 import Task from "./components/Task";
 import "./App.css";
 
+
+
+
 function App() {
+
   return (
     <div className="App">
       <Header />
-      <Task List={Tasklist}/>
+      <Task List={Tasklist} />
     </div>
   );
 }
