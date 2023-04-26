@@ -1,6 +1,7 @@
 import Header from "./components/header";
 import { Tasklist } from "./Tasklist";
 import Task from "./components/Task";
+import "./App.css";
 
 function App() {
   return (
