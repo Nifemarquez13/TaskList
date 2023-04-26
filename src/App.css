@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  #root {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+  }
+  .CardActivity {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row: auto;
+    row-gap: 20px;
+    padding: 4%;
+    background-color: rgb(242, 225, 248);
+  }
+  
+  h1 {
+    border: 2px solid rgb(197, 64, 250);
+    padding: 2%;
+    background-color: rgb(242, 225, 248);
+  }
+  
+  img {
+    height: 120px;
+    margin: auto;
+  }
+  
+  .icons {
+    justify-content: center;
+  }
+  .icons img {
+    height: 32px;
+  }
+  .CardList {
+    border: 1px solid rgb(77, 46, 46);
+    margin: auto;
+    text-align: center;
+    width: 90%;
+    height: 100%;
+    line-height: 30px;
+    border-radius: 3%;
+  }  
