@@ -1,10 +1,11 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
   #root {
     text-align: center;
-    width: 90%;
+    /* width: 90%; */
     margin: auto;
   }
   .CardActivity {
@@ -23,7 +24,7 @@
   }
   
   img {
-    height: 120px;
+    height: 100px;
     margin: auto;
   }
   
@@ -42,3 +43,38 @@
     line-height: 30px;
     border-radius: 3%;
   }  
+  
+  button{
+    background-color: rgb(66, 66, 233);
+    margin-left: 5px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+input, select{
+  border: none;
+  border-bottom: 2px solid pink;
+  padding: 12px 20px;
+  margin: 5px 0;
+  width: 300px;
+}
+  form{
+    width:500px;
+    padding:16px;
+    border-radius:10px;
+    margin:auto;
+    background-color: rgb(242, 225, 248);
+   text-align: center;
+  }
+  
+  form label{
+    font-weight:bold;
+    font-size: large;
+    display:block;
+  }
+#Close{
+  float: right;
+}

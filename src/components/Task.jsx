@@ -14,11 +14,11 @@ function Task(props) {
       }
   })
   
-  const handleDeleteTask=()=>{
+  const handleClickDelete=(id)=>{
    const select = confirm("¿estas seguro que desea eliminar la tarea?");
    setDeteled(select);
+   console.log(`Clicked on element with id ${id}`);
   }
-
   // const [favourites, setFavourites] = useState(List);
 
   // const handleFavouriteClick = (name) => {
@@ -57,7 +57,7 @@ function Task(props) {
           <div className="CardList">
             <img src="./../src/images/listaTareas2.png" alt="lista de tareas" />
             <ShowTaskList
-              key={data.id}
+              Key={data.id}
               name={data.name}
               date={data.date}
               status={
@@ -71,7 +71,7 @@ function Task(props) {
             />
             <div className="icons">
               <img src="./../src/images/editTasks.png" alt="Editar tarea" />
-              <img src="./../src/images/delete.png" name="deleted" alt="eliminar tareas" onClick={handleDeleteTask} />
+              <img src="./../src/images/delete.png" name="deleted" alt="eliminar tareas" onClick={() => handleClickDelete(data.id)}/>
             </div>
           </div>
         );
