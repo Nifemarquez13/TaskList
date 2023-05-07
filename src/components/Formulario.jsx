@@ -40,7 +40,7 @@ function Formulario() {
             <select name="status" onChange={handleOnChange}>
                 <option>Seleccione</option>
                 <option>Pendiente</option>
-                <option>Completado</option>
+                {/* <option>Completado</option> */}
                 <option>En proceso</option>                
             </select>
                 <h2>{add.nameTask}
