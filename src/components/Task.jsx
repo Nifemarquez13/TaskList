@@ -18,12 +18,30 @@ function Task(props) {
   })
   
   const handleClickDelete=(id)=>{
+    //Ventana de confirmación para eliminar la tarea.
    const select = confirm("¿estas seguro que desea eliminar la tarea?");
    //Se actualiza el estado según la elección del usuario. 
    setDeteled(select);
+   if (select){
+    localStorage.removeItem("lista"); //Se limpia el localStorage.
+   } 
+   let newTaskList = [...dataTask]; //Se copia el array que contiene la lista.
+
+   //Filtra los datos para excluir el elemento eliminado.
+   const TaskActualizados = newTaskList.filter(item => item.id !== id);
+   //Se actualiza el localStorage con la nueva lista.
+   localStorage.setItem("lista",JSON.stringify(TaskActualizados));
+   //Se actualiza el estado que contiene la lista de tareas.
+  setDataTask(TaskActualizados);
   }
 
-  // const [favourites, setFavourites] = useState(List);
+  //Se leen los datos del localStorage se actualiza el estado con la lista obtenida.
+  //Con la librería JSON (.parse) transformamos los datos obtenidos con el localStorage.
+  useEffect(()=>{
+      const localStorageData = localStorage.getItem("lista");
+        const storedTask = JSON.parse(localStorageData);
+        setDataTask(storedTask);
+  },[]);
 
 //  useEffect(()=>{
 //       var dataTasks = JSON.parse(localStorage.getItem("lista"));
@@ -41,7 +59,7 @@ function Task(props) {
           <div key={data.id} className="CardList">
             <img src="./../src/images/listaTareas2.png" alt="lista de tareas" />
             <ShowTaskList
-              Key={data.id}
+              key={data.id}
               name={data.name}
               date={data.date}
               status={
