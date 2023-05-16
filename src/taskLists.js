@@ -1,4 +1,4 @@
-export const Tasklist = [{
+export const taskLists = [{
 id:0,
 name: "Entrenar 2 horas",
 date: "17/04/2023",

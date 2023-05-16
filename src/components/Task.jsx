@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 
 
 function Task(props) {
-  const { List } = props;
- 
+  const { list } = props;
+  //Este estado es para guardar el array de la lista.
+ const[dataTask, setDataTask] = useState(list);
+ //Este estado es para guardar la confirmación de eliminar la tarea.
   const[deleted, setDeteled] = useState(false);
 
+//Muestra la ventana que informa que se ha eliminado la tarea.
   useEffect(()=>{
       if(deleted){
         alert("has eliminado la tarea seleccionada");
@@ -14,47 +17,28 @@ function Task(props) {
       }
   })
   
-  const handleClickDelete=(id)=>{
+  const handleDeleteTask=()=>{
    const select = confirm("¿estas seguro que desea eliminar la tarea?");
+   //Se actualiza el estado según la elección del usuario. 
    setDeteled(select);
-   console.log(`Clicked on element with id ${id}`);
   }
+
   // const [favourites, setFavourites] = useState(List);
 
-  // const handleFavouriteClick = (name) => {
-  //   console.log(`favourite clicked from ${name}`);
-  // }
-  // //   let newFavourites = [...favourites];
-
-  //   if (!favourites.includes(movieName)) {
-  //     newFavourites = [...newFavourites, movieName];
-  //   } else {
-  //     newFavourites = newFavourites.filter((movie) => movieName != movie);
-  //   }
-
-  //   setFavourites(newFavourites);
-
-  //   localStorage.setItem("favourites", JSON.stringify(newFavourites));
-  // };
-
-  // useEffect(() => {
-  //   const localStorageData = localStorage.getItem("favourites");
-  //   if(localStorageData){
-  //     try{
-  //       const storedFavourites = JSON.parse(localStorageData);
-
-  //       setFavourites(storedFavourites);
-  //     }catch(err){
-  //       console.err("Error parsing favourite items from localStorage")
-  //     }
-  //   }
-  // }, []);
+//  useEffect(()=>{
+//       var dataTasks = JSON.parse(localStorage.getItem("lista"));
+//       if(dataTasks?.length > 0) {
+//       setDataTask(dataTask)
+//       } else {
+// localStorage.setItem("lista", JSON.stringify(dataTask));
+//       }
+//   },[]);
 
   return (
     <div className="CardActivity">
-       {List.map((data) => {
+       {dataTask.map((data) => {
         return (
-          <div className="CardList">
+          <div key={data.id} className="CardList">
             <img src="./../src/images/listaTareas2.png" alt="lista de tareas" />
             <ShowTaskList
               Key={data.id}
