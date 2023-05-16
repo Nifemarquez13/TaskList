@@ -17,7 +17,7 @@ function Task(props) {
       }
   })
   
-  const handleDeleteTask=()=>{
+  const handleClickDelete=(id)=>{
    const select = confirm("¿estas seguro que desea eliminar la tarea?");
    //Se actualiza el estado según la elección del usuario. 
    setDeteled(select);
