@@ -2,7 +2,7 @@
 function ShowTaskList(props) {
   const { name, date, status, hour } = props;
   return (
-    <div className="CardTaskList">
+    <div className="cardTaskList">
       <p><strong>ACTIVITY:</strong><br/>{name}</p>
       <p><strong>DATE:</strong>{date}</p>
       <p><strong>STATUS:</strong>{status}</p>

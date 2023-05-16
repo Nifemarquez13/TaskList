@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 
 
 function Task(props) {
-  const { List } = props;
+  const { list } = props;
   //Este estado es para guardar el array de la lista.
- const[Task, setTask] = useState(List);
+ const[dataTask, setDataTask] = useState(list);
  //Este estado es para guardar la confirmación de eliminar la tarea.
   const[deleted, setDeteled] = useState(false);
 
@@ -25,28 +25,36 @@ function Task(props) {
    if (select){
     localStorage.removeItem("lista"); //Se limpia el localStorage.
    } 
-   let newTaskList = [...Task]; //Se copia el array que contiene la lista.
+   let newTaskList = [...dataTask]; //Se copia el array que contiene la lista.
 
    //Filtra los datos para excluir el elemento eliminado.
-   const TaskActualizados = Task.filter(item => item.id !== id);
+   const TaskActualizados = newTaskList.filter(item => item.id !== id);
    //Se actualiza el localStorage con la nueva lista.
    localStorage.setItem("lista",JSON.stringify(TaskActualizados));
    //Se actualiza el estado que contiene la lista de tareas.
-  setTask(TaskActualizados);
+  setDataTask(TaskActualizados);
   }
 
-  //Se leen los datos del localStoragey se actualiza el estado con la lista obtenida.
+  //Se leen los datos del localStorage se actualiza el estado con la lista obtenida.
   //Con la librería JSON (.parse) transformamos los datos obtenidos con el localStorage.
   useEffect(()=>{
       const localStorageData = localStorage.getItem("lista");
         const storedTask = JSON.parse(localStorageData);
+        setDataTask(storedTask);
+  },[]);
 
-        setTask(storedTask);
-  },[]); 
+//  useEffect(()=>{
+//       var dataTasks = JSON.parse(localStorage.getItem("lista"));
+//       if(dataTasks?.length > 0) {
+//       setDataTask(dataTask)
+//       } else {
+// localStorage.setItem("lista", JSON.stringify(dataTask));
+//       }
+//   },[]);
 
   return (
     <div className="CardActivity">
-       {Task.map((data) => {
+       {dataTask.map((data) => {
         return (
           <div key={data.id} className="CardList">
             <img src="./../src/images/listaTareas2.png" alt="lista de tareas" />
