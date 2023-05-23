@@ -43,14 +43,14 @@ function Task(props) {
         setDataTask(storedTask);
   },[]);
 
-//  useEffect(()=>{
-//       var dataTasks = JSON.parse(localStorage.getItem("lista"));
-//       if(dataTasks?.length > 0) {
-//       setDataTask(dataTask)
-//       } else {
-// localStorage.setItem("lista", JSON.stringify(dataTask));
-//       }
-//   },[]);
+ useEffect(()=>{
+      var dataTasks = JSON.parse(localStorage.getItem("lista"));
+      if(dataTasks?.length > 0) {
+      setDataTask(dataTask)
+      } else {
+localStorage.setItem("lista", JSON.stringify(dataTask));
+      }
+  },[]);
 
   return (
     <div className="CardActivity">
