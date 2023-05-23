@@ -1,5 +1,4 @@
 import Header from "./components/header";
-import { taskLists } from "./taskLists";
 import Task from "./components/Task";
 import "./App.css";
 import AddTask from "./components/AddTask"
@@ -14,7 +13,7 @@ function App() {
 
       <AddTask />
 
-      <Task list={taskLists} />
+      <Task />
 
     </div>
   );

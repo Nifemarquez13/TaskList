@@ -1,33 +1,49 @@
 import React, { useState, useEffect } from 'react';
+import useLocalStorageData from '../hooks/useLocalStorageData';
 
-function Formulario() {
+function Formulario({onCloseModal}) {
+   
+  const {taskData, add, setAdd, selected, setSelected, addTask}  = useLocalStorageData();
 
-    const[add, setAdd] = useState({
-        nameTask:"",
-        date:"",
-        hour:"",
-        status:""
-       });
     
-       const handleOnChange = (event) => {
-        setAdd({
-          ...add,
-          [event.target.name]:event.target.value, 
-        }
-          );    
+      useEffect(()=>{
+          if(selected){
+            onCloseModal(); 
+          }
+      })
+      
+       const handleOnChange = (event) => {        
+          let ID = ((taskData[taskData.length - 1].id));
+            if(ID == null){
+              setAdd({
+                ...add,
+                id:0,
+                [event.target.name]:event.target.value, 
+              }
+                ); 
+            }else{
+              setAdd({
+                ...add,
+                id:ID + 1,
+                [event.target.name]:event.target.value, 
+              }
+            ); 
+          } 
         }
         
         const handleOnSubmit=(event)=>{
           event.preventDefault();
-          console.log(add);
+          addTask();
         }
+
+        // 
   return (
     <div className="AddTasks">
     <form onSubmit={handleOnSubmit}>
     <h1>AGREGAR NUEVA TAREA</h1>
     <img src="./../src/images/listaTareas2.png" alt="lista de tareas" />
         <label>Actividad:</label>
-         <input type="text" placeholder='Nueva Tarea' id="nameTask" name="nameTask" onChange={handleOnChange} autoComplete='off'/>
+         <input type="text" placeholder='Nueva Tarea' value={add.name} id="name" name="name" onChange={handleOnChange} autoComplete='off'/>
          <br/>
             <label>¿cuándo realizarás la actividad?:</label>
             <input type='date' name='date' onChange={handleOnChange} />
@@ -40,19 +56,10 @@ function Formulario() {
             <select name="status" onChange={handleOnChange}>
                 <option>Seleccione</option>
                 <option>Pendiente</option>
-                {/* <option>Completado</option> */}
                 <option>En proceso</option>                
             </select>
-                <h2>{add.nameTask}
-                <br/>
-                {add.date}
-                <br/>
-                {add.hour}
-                <br/>
-                {add.status}
-                </h2>
-
-                <button type="submit">Guardar</button>
+            <br/>
+               <button type="submit">Guardar</button>
             </form>
 
      </div>

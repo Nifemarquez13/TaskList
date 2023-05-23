@@ -1,27 +1,21 @@
-import {useState, useEffect, Fragment} from 'react';
 import Modal from 'react-modal';
 import Formulario from './Formulario';
+import useModal from './useModal';
+import { Fragment } from 'react';
 
 
 function AddTask(){
+    const {modalAbierto, handleAbrirModal, handleCerrarModal} = useModal();
     
-    const [modalAbierto, setModalAbierto] = useState(false);
-
-    const handleAbrirModal = () => {
-      setModalAbierto(true);
-    }
-  
-    const handleCerrarModal = () => {
-      setModalAbierto(false);
-    }
     return(
         <Fragment>
-        <button type='submit' id="mybutton" onClick={handleAbrirModal}>Agregar</button>
+        <button type='submit' id="mybutton" onClick={handleAbrirModal}>Nueva Tarea</button>
+      
         <Modal isOpen={modalAbierto} onRequestClose={handleCerrarModal} ariaHideApp={false}>
         <button onClick={handleCerrarModal} id="Close">Cerrar</button>
-          <Formulario/>
-       
+          <Formulario onCloseModal={handleCerrarModal} />
         </Modal>
+        
         </Fragment>
     )
 }
