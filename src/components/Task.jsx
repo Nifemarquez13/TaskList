@@ -15,6 +15,7 @@ function Task() {
     deleteTask(id)
   }
 
+
   const handleClickUpdate = (id) => {
     handleAbrirModal();
     updateTask(id)
