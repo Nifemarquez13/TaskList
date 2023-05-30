@@ -10,6 +10,7 @@ function useModal(){
   
     const handleCerrarModal = () => {
       setModalAbierto(false);
+      localStorage.removeItem("task");
     }
     
     return {modalAbierto, setModalAbierto, handleAbrirModal, handleCerrarModal} 

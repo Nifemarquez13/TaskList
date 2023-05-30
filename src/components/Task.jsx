@@ -28,7 +28,7 @@ function Task() {
             <img src="./../src/images/listaTareas2.png" alt="lista de tareas" />
             <ShowTaskList
               Key={data.id}
-              name={data.name}
+              name={data.names}
               date={data.date}
               status={data.status}
               hour={data.hour}

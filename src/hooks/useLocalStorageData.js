@@ -6,105 +6,85 @@ function useLocalStorageData(){
     const [taskData, setTaskData] = useState(taskLists);          
     const [deleted, setDeteled] = useState(false);
     const[selected, setSelected] = useState(false);
+    const[refresh, setRefresh] = useState(false);
 
     const[add, setAdd] = useState({
-      id:null,
-        name:"",
+        id:null,
+        names:"",
         date:"",
         hour:"",
         status:""
        }); 
 
-  //Muestra la ventana que informa que se ha eliminado la tarea.
-  useEffect(() => {
-    if (deleted) {
-      alert("has eliminado la tarea seleccionada");
-      setDeteled(false);
-    }
-  });
+    const[adds, setAdds] = useState({
+        id:null,
+        names:"",
+        date:"",
+        hour:"",
+        status:""
+       }); 
 
     useEffect(()=>{
-      const localStorageData = localStorage.getItem("lista");
+      const localStorageData = window.localStorage.getItem("lista");
       const storedTask = JSON.parse(localStorageData);
       if(storedTask===null){
-        localStorage.setItem("lista",JSON.stringify(taskData));
+        window.localStorage.setItem("lista",JSON.stringify(taskData));
       }else{
-      setTaskData(storedTask);
+       setTaskData(storedTask);
       }
-  },[]);
+      console.log("hola");
+}, []);
 
-  useEffect(()=>{
-    if(selected){
-      alert("has agregado la tarea exitosamente");
-      setSelected(false);  
-    }
-})
 
   const deleteTask = (id) => {
     const select = confirm("¿estas seguro que desea eliminar la tarea?");
     //Se actualiza el estado según la elección del usuario.
     setDeteled(select);
-   if (select){
-    localStorage.removeItem("lista"); //Se limpia el localStorage.
+    window.localStorage.removeItem("lista"); //Se limpia el localStorage.
     let newTaskList = [...taskData]; //Se copia el array que contiene la lista.
  
     //Filtra los datos para excluir el elemento eliminado.
     const taskActualizados = newTaskList.filter(item => item.id !== id);
     //Se actualiza el localStorage con la nueva lista.
-    localStorage.setItem("lista",JSON.stringify(taskActualizados));
+    window.localStorage.setItem("lista",JSON.stringify(taskActualizados));
     //Se actualiza el estado que contiene la lista de tareas.
-   setTaskData(taskActualizados);
-   } 
+    setTaskData(taskActualizados);
+    alert("has eliminado la tarea seleccionada");
+   
   }
 
-  const addTask=(newtask)=>{
+  const addTask=()=>{
     const select = confirm("¿estas seguro que desea agregar la tarea?");
     //Se actualiza el estado según la elección del usuario. 
-    setSelected(select);
+    // setSelected(select);
+    if (select){
       let newTaskList = [...taskData, add]; //Se agrega el objeto
-      localStorage.setItem("lista",JSON.stringify(newTaskList));
+      window.localStorage.setItem("lista",JSON.stringify(newTaskList));
       //Se actualiza el estado que contiene la lista de tareas.
       setTaskData(newTaskList);
+      alert("has agregado la tarea exitosamente");
+      setRefresh(true);
+     }
   }
 
-  const updateTask=(newtask)=>{
-    // Obtén el valor de la clave principal desde el almacenamiento local
+  const updateTask=(id)=>{
       var almacenamientoLocal = localStorage.getItem('lista');
+      var diccionario = JSON.parse(almacenamientoLocal);
 
-      // Convierte el valor obtenido en un objeto o diccionario
-      var diccionarios = JSON.parse(almacenamientoLocal);
-
-      // Supongamos que el ID del diccionario que deseas acceder es 'id_deseado'
-      if (diccionarios.hasOwnProperty(newtask)) {
-        var diccionarioDeseado = diccionarios[newtask];
-        // Realiza las operaciones necesarias con el diccionario deseado
-        console.log(diccionarioDeseado);
-        console.log(diccionarioDeseado.name);
-        console.log(diccionarioDeseado.date);
-        console.log(diccionarioDeseado.hour);
-        console.log(diccionarioDeseado.status);
-
-
-        setAdd({
-          ...add,
-          id:diccionarioDeseado.id,
-          name: diccionarioDeseado.name,
-          date: diccionarioDeseado.date,
-          hour: diccionarioDeseado.hour,
-          status: diccionarioDeseado.status
-        });
-        console.log("estado");
-        console.log(add);
-
-
-      
+      // Se pasa por parámetro el valor del ID que se quiere actualizar
+      if (diccionario.hasOwnProperty(id)) {
+        var taskselected = diccionario[id];
+        window.localStorage.setItem("task",JSON.stringify(taskselected));
+      //Se actualiza el estado que contiene la lista de tareas.
+        setAdds(taskselected);
       } else {
         console.log('No se encontró el diccionario con el ID deseado');
       }
   }
 
-  return {taskData, setTaskData, deleteTask, selected, setSelected, add, setAdd, addTask, updateTask};
+  return {taskData, setTaskData, deleteTask, selected, setSelected, add, setAdd,  adds, setAdds, addTask, updateTask};
 }
 
 export default useLocalStorageData;
+
 
