@@ -1,24 +1,25 @@
 import ShowTaskList from "./ShowTaskList";
 import Modal from 'react-modal';
 import Formulario from "./Formulario";
-import  useLocalStorageData from "../hooks/useLocalStorageData";
 import useModal from "./useModal";
 
-function Task() {
+function Task(props) {
   
-  //se importa el hook personalizado.
-  const {taskData, deleteTask, updateTask}  = useLocalStorageData();
-  const {modalAbierto, handleAbrirModal, handleCerrarModal} = useModal();
+  const {taskData, addTask, deleteTask, selectTaskUpdate, updateTask, completeTask}  = props;
+  const { modalAbierto, handleAbrirModal, handleCerrarModal } = useModal();
     
+
+  const handleClickComplete = (id) => {
+    completeTask(id)
+  }
 
   const handleClickDelete = (id) => {
     deleteTask(id)
   }
 
-
   const handleClickUpdate = (id) => {
     handleAbrirModal();
-    updateTask(id)
+    selectTaskUpdate(id);
   }
 
   return (
@@ -29,21 +30,22 @@ function Task() {
             <img src="./../src/images/listaTareas2.png" alt="lista de tareas" />
             <ShowTaskList
               Key={data.id}
-              name={data.name}
+              names={data.names}
               date={data.date}
               status={data.status}
               hour={data.hour}
             />
             <div className="icons">
+            <img src="./../src/images/completed.png" alt="Completar tarea" onClick={() => handleClickComplete(data.id)}/>
             <img src="./../src/images/editTasks.png" alt="Editar tarea" onClick={() => handleClickUpdate(data.id)}/>
             <Modal isOpen={modalAbierto} onRequestClose={handleCerrarModal} ariaHideApp={false}>
             <button onClick={handleCerrarModal} id="Close">Cerrar</button>
-             <Formulario onCloseModal={handleCerrarModal} />
+             <Formulario onCloseModal={handleCerrarModal} updateTask={updateTask} />
              </Modal>
              
               
               <img
-                src="./../src/images/delete.png"
+                src="./../src/images/deleted.png"
                 name="deleted"
                 alt="eliminar tareas"
                 onClick={() => handleClickDelete(data.id)}

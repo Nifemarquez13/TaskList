@@ -81,3 +81,25 @@ input, select{
 #mybutton{
   margin-top: 7px;
 }
+
+.error {
+  display: block;
+  color: red;
+  font-style: italic;
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+}
+button:disabled {
+  background-color: #ba9ef0;
+}
+
+.cardTaskList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7px;
+}
+
+strong{
+  margin-right: 4px;
+}
