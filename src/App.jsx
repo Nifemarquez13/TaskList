@@ -1,29 +1,23 @@
-import Header from "./components/header";
-import Task from "./components/Task";
 import "./App.css";
-import useLocalStorageData from "./hooks/useLocalStorageData";
-import AddTask from "./components/AddTask";
-
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Tareas } from "./pages/Tareas";
+import { SobreNosotros } from "./pages/SobreNosotros";
+import { Menu } from "./components/Menu";
 
 function App() {
 
-  const {taskData, deleteTask, addTask, selectTaskUpdate, updateTask, completeTask}  = useLocalStorageData();
-  return (
-    <div className="App">
-      <Header />
-      <AddTask
-        addTask = {addTask} 
-        />
-      <Task 
-        taskData = {taskData}
-        deleteTask = {deleteTask}
-        selectTaskUpdate = {selectTaskUpdate}     
-        updateTask = {updateTask}   
-        addTask = {addTask} 
-        completeTask = {completeTask}
-        />
-
+return (
+    <div>
+      <BrowserRouter>
+      <Menu />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/task" element={<Tareas />} />
+        <Route path="/aboutUs" element={<SobreNosotros />} />
+      </Routes>
+    </BrowserRouter>
+     
     </div>
   );
 }
