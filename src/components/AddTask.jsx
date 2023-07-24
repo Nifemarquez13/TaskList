@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Modal from 'react-modal';
 import useModal from "./useModal";
 import Formulario from "./Formulario";
+import { Button } from "@chakra-ui/react";
 
 function AddTask (props){
 
@@ -11,8 +12,12 @@ function AddTask (props){
     return (
     
     <Fragment>
-    <button type='submit' id="mybutton" onClick={handleAbrirModal}>Nueva Tarea</button>
-    
+    <div className="addTask">
+    <Button
+          variant='outline'
+          size='lg'
+         onClick={handleAbrirModal}>Nueva Tarea</Button>
+    </div>
     <Modal isOpen={modalAbierto} onRequestClose={handleCerrarModal} ariaHideApp={false}>
     <button onClick={handleCerrarModal} id="Close">Cerrar</button>
       <Formulario 

@@ -4,10 +4,14 @@ import { Home } from "./pages/Home";
 import { Tareas } from "./pages/Tareas";
 import { SobreNosotros } from "./pages/SobreNosotros";
 import { Menu } from "./components/Menu";
+import { ChakraProvider} from '@chakra-ui/react';
+import { theme } from './theme/theme';
+
 
 function App() {
 
 return (
+  <ChakraProvider theme={theme}>
     <div>
       <BrowserRouter>
       <Menu />
@@ -17,8 +21,8 @@ return (
         <Route path="/aboutUs" element={<SobreNosotros />} />
       </Routes>
     </BrowserRouter>
-     
     </div>
+  </ChakraProvider>
   );
 }
 
