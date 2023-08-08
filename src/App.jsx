@@ -1,28 +1,46 @@
 import "./App.css";
+import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Tareas } from "./pages/Tareas";
-import { SobreNosotros } from "./pages/SobreNosotros";
 import { Menu } from "./components/Menu";
-import { ChakraProvider} from '@chakra-ui/react';
-import { theme } from './theme/theme';
-
+const Home = lazy(() => import("./pages/Home"));
+const Tareas = lazy(() => import("./pages/Tareas"));
+const SobreNosotros = lazy(() => import("./pages/SobreNosotros"));
 
 function App() {
-
-return (
-  <ChakraProvider theme={theme}>
+  return (
     <div>
       <BrowserRouter>
-      <Menu />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/task" element={<Tareas />} />
-        <Route path="/aboutUs" element={<SobreNosotros />} />
-      </Routes>
-    </BrowserRouter>
+        <Menu />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={"Cargando. . ."}>
+                <Home />{" "}
+              </Suspense>
+            }
+          />
+          <Route
+            path="/task"
+            element={
+              <Suspense fallback={"Cargando. . ."}>
+                {" "}
+                <Tareas />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/aboutUs"
+            element={
+              <Suspense fallback={"Cargando. . ."}>
+                {" "}
+                <SobreNosotros />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
-  </ChakraProvider>
   );
 }
 

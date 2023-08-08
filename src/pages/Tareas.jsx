@@ -2,24 +2,26 @@ import Task from "./../components/Task";
 import useLocalStorageData from "./../hooks/useLocalStorageData";
 import AddTask from "./../components/AddTask";
 
-
-export function Tareas () {
-
-  const {taskData, deleteTask, addTask, selectTaskUpdate, updateTask, completeTask}  = useLocalStorageData();
+export default function Tareas() {
+  const {
+    taskData,
+    deleteTask,
+    addTask,
+    selectTaskUpdate,
+    updateTask,
+    completeTask,
+  } = useLocalStorageData();
   return (
     <div className="App">
-      <AddTask
-        addTask = {addTask} 
-        />
+      <AddTask addTask={addTask} />
       <Task
-        taskData = {taskData}
-        deleteTask = {deleteTask}
-        selectTaskUpdate = {selectTaskUpdate}     
-        updateTask = {updateTask}   
-        addTask = {addTask} 
-        completeTask = {completeTask}
-        />
-
+        taskData={taskData}
+        deleteTask={deleteTask}
+        selectTaskUpdate={selectTaskUpdate}
+        updateTask={updateTask}
+        addTask={addTask}
+        completeTask={completeTask}
+      />
     </div>
   );
-};
+}

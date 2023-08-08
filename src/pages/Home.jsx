@@ -8,8 +8,10 @@ import {
   Button,
   Image,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
-export function Home() {
+export default function Home() {
+  const navigate = useNavigate();
   return (
     <Container maxW={"7xl"}>
       <Stack
@@ -38,7 +40,7 @@ export function Home() {
                 zIndex: -1,
               }}
             >
-              ¡Carga tus tareas,
+              ¡Organiza tus tareas,
             </Text>
             <br />
             <Text as={"span"} color={"purple.500"}>
@@ -46,15 +48,16 @@ export function Home() {
             </Text>
           </Heading>
           <Text color={"gray.500"} fontSize={"25px"}>
-            ¡Esperamos que puedas experimentar con nuestra Task Clicks y que con
-            ella las ideas no queden solo en tu mente, sino que también las
-            puedas llevar en todos tus dispositivos!
+            ¡Esperamos que puedas experimentar con Task Clicks y que con ella
+            las ideas no queden solo en tu mente, sino que también las puedas
+            llevar en todos tus dispositivos!
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
           >
             <Button
+              onClick={() => navigate("/task")}
               rounded={"full"}
               size={"lg"}
               fontWeight={"normal"}
@@ -66,6 +69,7 @@ export function Home() {
               REVISA TUS TAREAS
             </Button>
             <Button
+              onClick={() => navigate("/aboutUs")}
               rounded={"full"}
               size={"lg"}
               fontWeight={"normal"}
